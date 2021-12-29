@@ -114,15 +114,15 @@ function findDeepestNodesAndDepth_IterativeSolution(input = []) {
     let root = null
 
     for (let num of input) {
-        let curr = root
         let depth = 0
 
         if (root === null) {
             root = new TreeNode(num, depth)
-            checkCurrentLevel(depth, num)
+            checkCurrentLevel(num, depth)
             continue
         }
 
+        let curr = root
         while (curr !== null) {
             depth += 1
 
@@ -130,7 +130,7 @@ function findDeepestNodesAndDepth_IterativeSolution(input = []) {
                 // go right
                 if (curr.right === null) {
                     curr.right = new TreeNode(num, depth)
-                    checkCurrentLevel(depth, num)
+                    checkCurrentLevel(num, depth)
                     break
                 } else {
                     curr = curr.right
@@ -139,7 +139,7 @@ function findDeepestNodesAndDepth_IterativeSolution(input = []) {
                 // go left
                 if (curr.left === null) {
                     curr.left = new TreeNode(num, depth)
-                    checkCurrentLevel(depth, num)
+                    checkCurrentLevel(num, depth)
                     break
                 } else {
                     curr = curr.left
@@ -154,7 +154,7 @@ function findDeepestNodesAndDepth_IterativeSolution(input = []) {
     }
 
 
-    function checkCurrentLevel(depth, value) {
+    function checkCurrentLevel(value, depth) {
         if (deepestDepth === depth) {
             deepestNodes.push(value)
         } else if (deepestDepth < depth) {
